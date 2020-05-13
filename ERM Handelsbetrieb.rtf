@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab560
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\f0\b\fs24 \cf0 Handelsbetrieb ERM
+\f1\b0 \
+\
+Ein Handelsbetrieb verkauft ein Sortiment von Artikeln, die er von verschiedenen Herstellern bezieht. \
+\
+\
+Der Handelsbetrieb hat einen bestimmten Kundenkreis, der regelm\'e4\'dfig Bestellungen aufgibt. \
+\
+\
+Eine Bestellung kann mehrere Artikel umfassen. \
+\
+\
+Ein Artikel kann von mehreren Lieferanten bezogen werden und ein Lieferant liefert nat\'fcrlich meist mehr als einen Artikel. \
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+PARTNER_ADDRESS - MANUFACTURER ==> 1:1 (FK:FK)\
+PARTNER_ADDRESS - CUSTOMER ==> 1:1 (FK:FK)\
+PARTNER_ADDRESS - SUPPLIER ==> 1:1 (FK:FK)\
+\
+MANUFACTURER - ARTICLE ==> 1:N (0:FK)\
+CUSTOMER - ORDER: ==> 1:N (0:FK)\
+\
+SUPPLER - ARTICLE ==> N:M (ASSOC)\
+ORDER - ARTICLE: ==> N:M (ASSOC)\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 entity: ARTICLE (PRIMARY article_id, article_name, article_description, article_misc, in_stock, FOREIGN manuf_id)\
+\
+entity: MANUFACTURER (PRIMARY partner_id, partner_role, manuf_name, manuf_misc, FOREIGN address_id)\
+\
+entity: CUSTOMER (PRIMARY partner_id, partner_role, cust_name, cust_misc, FOREIGN address_id)\
+\
+entity: ORDER (PRIMARY order_id, order_misc, FOREIGN cust_id)\
+\
+entity: SUPPLIER (PRIMARY partner_id, partner_role, supplier_name, supplier_misc, FOREIGN address_id)\
+\
+entity: PARTNER_ADDRESS (PRIMARY address_id, country, state, zip_code, city, street_name, street_number, top_number, address_misc, FOREIGN partner_id)\
+\
+entity: SUPPLIER_ARTICLE (PRIMARY supplier_article_id, FOREIGN supplier_id, FOREIGN article_id)\
+\
+entity: ORDER_ARTICLE (PRIMARY order_article_id, FOREIGN order_id, FOREIGN article_ID)\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \'97\'97\'97\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf0 \
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf0 \
+}
